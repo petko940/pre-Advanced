@@ -4,7 +4,7 @@ matrix = []
 for _ in range(rows):
     matrix.append([int(x) for x in input().split()])
 
-total_sum = 0
+total_sum = -400
 matrix_3x3 = []
 for row in range(rows - 2):
     for col in range(columns - 2):

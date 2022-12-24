@@ -1,39 +1,25 @@
 from collections import deque
 
-strings = deque(x for x in input().split())
-
+expressions = input().split()
 numbers = deque()
-print(numbers)
-for element in strings:
-    if element in "+-*/":
-        while len(numbers) > 1 :
-            pass
+start = expressions[0]
+result = int(start)
 
-
-string_expression = input().split()
-
-numbers = deque()
-print(numbers)
-for element in string_expression:
-    if element in "+-*/":
-        while len(numbers) > 1:
-            num_one = numbers.popleft()
-            num_two = numbers.popleft()
-
-            result = 0
-
-            if element == "+":
-                result = num_one + num_two
-            elif element == "-":
-                result = num_one - num_two
-            elif element == "*":
-                result = num_one * num_two
-            else:
-                result = num_one // num_two
-
-            numbers.appendleft(result)
-
+for expression in expressions[1:]:
+    if expression not in "+-/*":
+        numbers.append(int(expression))
     else:
-        numbers.append(int(element))
+        if expression == "+":
+            while numbers:
+                result += numbers.popleft()
+        elif expression == "-":
+            while numbers:
+                result -= numbers.popleft()
+        elif expression == "*":
+            while numbers:
+                result *= numbers.popleft()
+        elif expression == "/":
+            while numbers:
+                result //= numbers.popleft()
 
-print(numbers.popleft())
+print(abs(result))
